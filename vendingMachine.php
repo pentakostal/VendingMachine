@@ -32,18 +32,24 @@ while(true){
 }
 //Counting
 $coins = [200, 100, 50, 20, 10, 5];
+//array containing amount of each coin value
+$coinAmount=[0,0,1,1,10,20];
 (int) $balance = $wallet - $menu[$clientChoice]->price;
 $coinCash = [];
 $i = 0;
 while ($balance > 0 && $i < 8) {
-    $reminder = $balance % $coins[$i];
-    if ($reminder == 0) {
-        $coinCash[$coins[$i]] = ($balance/$coins[$i]);
-        $balance = $balance/$coins[$i];
-        break;
+    if(!$coinAmount[$i]==0) {
+        $reminder = $balance % $coins[$i];
+        if ($reminder == 0) {
+            $coinCash[$coins[$i]] = ($balance / $coins[$i]);
+            $balance = $balance / $coins[$i];
+            break;
+        } else {
+            $coinCash[$coins[$i]] = (intval($balance / $coins[$i]));
+            $balance = $reminder;
+            $i++;
+        }
     } else {
-        $coinCash[$coins[$i]] = (intval($balance/$coins[$i]));
-        $balance = $reminder;
         $i++;
     }
 }
