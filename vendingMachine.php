@@ -22,9 +22,16 @@ echo "1. cappuccino\n";
 echo "2. white\n";
 echo "3. black\n";
 (int) $clientChoice = readline("-> ");
+//Insert coins
+$wallet = 0;
+while (true) {
+    $wallet +=(int) readline("Insert coin(2, 1, 0.50, 0.20, 0.05): ")*100;
+    if($wallet > $menu[$clientChoice]->price){
+        break;
+    }
+}
 //Counting
-$wallet = 500;
-$coins = [200, 100, 50, 20, 10, 5, 2, 1];
+$coins = [200, 100, 50, 20, 10, 5];
 $balance = $wallet - $menu[$clientChoice]->price;
 $coinCash = [];
 $i = 0;
@@ -39,6 +46,5 @@ while ($balance > 0 && $i < 8) {
         $balance = $reminder;
         $i++;
     }
-    var_dump($balance);
 }
 var_dump($coinCash);
