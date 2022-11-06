@@ -24,7 +24,7 @@ echo "3. black\n";
 (int) $clientChoice = readline("-> ");
 //Insert coins
 $wallet = 0;
-while (true) {
+while(true){
     $wallet +=(int) readline("Insert coin(2, 1, 0.50, 0.20, 0.05): ")*100;
     if($wallet > $menu[$clientChoice]->price){
         break;
@@ -32,7 +32,7 @@ while (true) {
 }
 //Counting
 $coins = [200, 100, 50, 20, 10, 5];
-$balance = $wallet - $menu[$clientChoice]->price;
+(int) $balance = $wallet - $menu[$clientChoice]->price;
 $coinCash = [];
 $i = 0;
 while ($balance > 0 && $i < 8) {
@@ -47,4 +47,10 @@ while ($balance > 0 && $i < 8) {
         $i++;
     }
 }
-var_dump($coinCash);
+//Display correct result
+echo "Change is: " .PHP_EOL;
+foreach($coinCash as $key=>$value){
+    if(!$value==0){
+        echo "coin value: ". $key/100 ." coin amount: ". $value.PHP_EOL;
+    }
+}
